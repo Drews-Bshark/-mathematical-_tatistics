@@ -31,6 +31,7 @@ real_1d_array delet (const real_1d_array& x,int i)
 }
 real_1d_array static_funk(const vector<double>& number,const vector <double>& a,fstream& fout)
 {
+	
 	real_1d_array x;
 	x.setcontent(number.size(),&(number[0]));
 	bool flag = true;
@@ -55,7 +56,7 @@ real_1d_array static_funk(const vector<double>& number,const vector <double>& a,
 
 		for(int i = 0; i < x.length(); i++)
 		{
-			if(1.76  < ABS((x[i] - mat))/pow(disp,0.5))
+			if(invstudenttdistribution(x.length() - 2, 0.95)  <  ABS((x[i] - mat))/pow(disp,0.5))
 				{
 					fout<< "Аномальное измерение: " << x[i] << endl;
 					flag = true;
@@ -68,10 +69,7 @@ real_1d_array static_funk(const vector<double>& number,const vector <double>& a,
 	for(int i = 0; i < a.size(); i++)
 	{
 		if(invnormaldistribution(1- ((1 - a[i])/ 2)) >= (ABS(sampleskewness(x))/pow((6/x.length()),1/2)))
-			{
 				fout << "результат серии не противоречит нормальному закоу распределения с уровнем доверия :" << a[i] << endl;
-				break;
-			}
 	}
 	return(x);
 }
