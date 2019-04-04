@@ -4,7 +4,7 @@
  *  Created on: 15 мар. 2019 г.
  *      Author: andrey
  */
-#include </home/andrey/Документы/mat.stat/Mat.stat/includes/statistics.h>
+#include </home/andrey/Документы/mat.stat/Mat.stat/-mathematical-_tatistics/includes/statistics.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -122,14 +122,8 @@ int main()
 				}
 			}
 		}
-		fout << endl <<endl<< "3. ПРОВЕРКА НОРМАЛЬНОСТИ РАСПЕРДЕЛЕНИЕЯ ВЕРОЯТНОСТИ РЕЗУЛЬТАТОВ ИСПЫТАНИЯ"<<endl << endl;
-		int n_sum;
-		for(auto s : x)
-			n_sum += x.length;
-		if(n_sum <= 50)
-		{
-			
-		}
+		stat_touch();
+
 	
 	}
 

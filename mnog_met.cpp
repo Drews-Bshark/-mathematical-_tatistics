@@ -1,4 +1,5 @@
-#include </home/andrey/Документы/mat.stat/Mat.stat/includes/statistics.h>
+#include </home/andrey/Документы/mat.stat/Mat.stat/-mathematical-_tatistics/includes/statistics.h>
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -60,9 +61,10 @@ void mnog_met(map <int,real_1d_array>& x, double a, fstream& fout,fstream& probl
 		if(sk/s <=invfdistribution(seri - 2,f,1 - a))
 			fout << "На уровне ожидания "<<a<< " по критерию Фишера принять гипотезу о равенстве мат ожиданий МОЖНО!!"<< endl;
 		else
+		{
 			problam <<  " На уровне ожидания "<<a<< " по критерию Фишера принять гипотезу о равенстве мат ожиданий НЕЛЬЗЯ!!"<< endl;
 			fout <<  " На уровне ожидания "<<a<< " по критерию Фишера принять гипотезу о равенстве мат ожиданий НЕЛЬЗЯ!!"<< endl;
-
+		}
 	}
 	else
 	{
