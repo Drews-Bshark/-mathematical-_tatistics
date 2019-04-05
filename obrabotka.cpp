@@ -39,38 +39,62 @@ real_1d_array static_funk(const vector<double>& number,const vector <double>& a,
 	double disp;
 	double assmetri;
 	double eksess;
+	int n = x.length();
 
 	samplemoments(x,mat,disp,assmetri,eksess);
+	eksess += 3;
 	double disp_sm = disp *(x.length() - 1)/(x.length());
+	double m3 = 0;
+	double m4 = 0;
+	for (int i = 0; i < x.length(); i++)
+		m4 += pow(x[i] - mat,4);
+	m4 /= x.length();
+	for(int i  = 0 ; i < x.length(); i++)
+		m3 +=pow(x[i] - mat,3);
+	m3 /= x.length();
 	fout <<"Количество Элементов: n = "<< x.length()<< endl;
 	fout <<"Математическое ожидание: M = "<< mat<< endl;
 	fout <<"Смешеное оценка дисперсии: Si = "<< disp_sm<< endl;
 	fout <<"Не смешеное оценка дисперсии: Si = "<< disp << endl;
-	fout <<"Третий момент распределение: m3 = "<< assmetri * pow(disp,3/2)<< endl;
-	fout <<"Четвертый момент распределение: m4 = "<< eksess * pow(disp,2)<< endl;
+	fout <<"Третий момент распределение: m3 = "<< m3<< endl;
+	fout <<"Четвертый момент распределение: m4 = "<< m4<< endl;
 	fout <<"Коэффициент ассиметрии : В1 = "<< assmetri<< endl;
-	fout <<"Коэффициент эксцесса: В2 = "<< eksess + 3<< endl;
+	fout <<"Коэффициент эксцесса: В2 = "<< eksess<< endl;
+	bool flag = false;
 	//cout << invstudenttdistribution(x.length() - 2, 0.95)<<endl;
 	for(int i = 0; i < x.length(); i++)
 	{
 		//cout<<"test: "<< x[i]<< " " << ABS((x[i] - mat))/pow(disp,0.5)<< " "<<pow(disp_sm,0.5)<<endl;
-		if(invstudenttdistribution(x.length() - 2, 0.95)  <  ABS((x[i] - mat))/pow(disp,0.5))
+		if(invstudenttdistribution(n - 2, 0.95)  <  ABS((x[i] - mat))/pow(disp,0.5))
 			{
 			fout<< "Аномальное измерение: " << x[i] << endl;		
 			x = delet(x,i);
+			flag = true;
 			}
 	}
 	fout << endl;
-	samplemoments(x,mat,disp,assmetri,eksess);
-	disp_sm = disp *(x.length() - 1)/(x.length());	
-	fout <<"Количество Элементов: n = "<< x.length()<< endl;
-	fout <<"Математическое ожидание: M = "<< mat<< endl;
-	fout <<"Смешеное оценка дисперсии: Si = "<< disp_sm<< endl;
-	fout <<"Не смешеное оценка дисперсии: Si = "<< disp << endl;
-	fout <<"Третий момент распределение: m3 = "<< assmetri * pow(disp,3/2)<< endl;
-	fout <<"Четвертый момент распределение: m4 = "<< eksess * pow(disp,2)<< endl;
-	fout <<"Коэффициент ассиметрии : В1 = "<< assmetri<< endl;
-	fout <<"Коэффициент эксцесса: В2 = "<< eksess + 3<< endl;
+	if(flag)
+	{
+		samplemoments(x,mat,disp,assmetri,eksess);
+		m4 = 0;
+		m3 = 0;
+		for (int i = 0; i < x.length(); i++)
+			m4 += pow(x[i] - mat,4);
+		m4 /= x.length();
+		for(int i  = 0 ; i < x.length(); i++)
+			m3 +=pow(x[i] - mat,3);
+		m3 /= x.length();
+		eksess += 3;
+		disp_sm = disp *(x.length() - 1)/(x.length());	
+		fout <<"Количество Элементов: n = "<< x.length()<< endl;
+		fout <<"Математическое ожидание: M = "<< mat<< endl;
+		fout <<"Смешеное оценка дисперсии: Si = "<< disp_sm<< endl;
+		fout <<"Не смешеное оценка дисперсии: Si = "<< disp << endl;
+		fout <<"Третий момент распределение: m3 = "<<  m3<< endl;
+		fout <<"Четвертый момент распределение: m4 = "<< m4<< endl;
+		fout <<"Коэффициент ассиметрии : В1 = "<< assmetri<< endl;
+		fout <<"Коэффициент эксцесса: В2 = "<< eksess<< endl;
+	}
 	fout << " Проверка на однородность :"<< endl;
 	for(int i = 0; i < a.size(); i++)
 	{
