@@ -17,6 +17,7 @@ using namespace alglib;
 real_1d_array static_funk(const vector<double>& number, const vector <double>& a,fstream& fout);
 string data_txt(int student_number);
 void mnog_met(map <int,real_1d_array>& x, double a, fstream& fout, fstream& problam);
+void stat_touchnost(const double& a,const double& k, fstream& fout);
 const int N[] = {16,27,28};
 const vector<double> a = {0.9,0.95,0.99};
 int main()
@@ -26,7 +27,7 @@ int main()
 	problam.open("problam.txt", ios::out);
 	fstream fout;
 	fout.open("reshenie.txt", ios ::out);
-	for(int k = 1; k < 30; k++)
+	for(int k = 1; k <=30; k++)
 	{
 		n = data_txt(k);
 		problam <<endl<< n <<endl;
@@ -122,7 +123,14 @@ int main()
 				}
 			}
 		}
-		stat_touch();
+		fout << "РАССЧИТЫВАЕМ ТОЧНОСТЬ СТАТИСТИЧЕСКИХ РЕШЕНИЙ ДЛЯ ОШТБОК 1 И 2 РОДА И КОЛИЧЕСТВО ИЗМЕРЕНИЙ: "<< endl;
+		fout << " Постоить график зависимости точности статисческих решений от объема исследованной выборки" << endl;
+		int sum_seria = 0;
+		for(int i = 1; i < x.size();i++)
+			sum_seria += x[i].length();
+		for(auto s : a)
+			stat_touchnost(s,sum_seria,fout);
+		
 
 	
 	}
