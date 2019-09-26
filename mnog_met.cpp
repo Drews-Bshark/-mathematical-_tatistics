@@ -1,5 +1,4 @@
-#include </home/andrey/Документы/mat.stat/Mat.stat/-mathematical-_tatistics/includes/statistics.h>
-
+#include <statistics.h>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -36,8 +35,8 @@ void mnog_met(map <int,real_1d_array>& x, double a, fstream& fout,fstream& probl
 	fout << " 		C: "<<c << endl;
 	fout << " 		V: "<< v<<endl;
 	fout << " 		T: "<< v/c<< endl;
-	fout << "Квантильнормльного распределения равен "<< invchisquaredistribution(seri - 1,1 - a)<<endl;
-	if(v/c <= invchisquaredistribution(seri - 1,1 - a))
+	fout << "Квантильнормльного распределения равен хи квадрат"<< invchisquaredistribution(seri - 1,1 - a)<<endl;
+	if(v/c <= invchisquaredistribution(seri - 1,a))
 	{
 		fout << "Так как статистический критерий Бартлетта меньше "<<" Квантиля хи-квадратного распределения со степенями свободы ";
 		fout<<seri - 1<<" То можно принять гипотезу о равенстве всех "<<seri<< " дисперсий"<< endl;

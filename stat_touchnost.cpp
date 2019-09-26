@@ -5,7 +5,7 @@
  *      Author: andrey
  */
 
-#include </home/andrey/Документы/mat.stat/Mat.stat/-mathematical-_tatistics/includes/statistics.h>
+#include <statistics.h>
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -32,7 +32,7 @@ void stat_touchnost(const double& a,const double& k, fstream& fout)
 	for(int i = 1; i <=10; i++)
 	{
 		if(i * 10 == k)
-			fout << "M: ";
+			fout << "О.M: ";
 		fout << setw(10);
 		fout <<  (invnormaldistribution(a) - invnormaldistribution(1 - a))/pow((i*10)/2,0.5);
 		if(i*10 < k && k <((i + 1) * 10) )

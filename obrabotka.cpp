@@ -5,7 +5,7 @@
  *      Author: andrey
  */
 
-#include </home/andrey/Документы/mat.stat/Mat.stat/-mathematical-_tatistics/includes/statistics.h>
+#include <statistics.h>
 #include <iostream>
 #include <vector>
 #include <math.h>

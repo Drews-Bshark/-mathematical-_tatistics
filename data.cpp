@@ -9,7 +9,7 @@
 #include <vector>
 #include <map>
 #include <fstream>
-# define ABS(x)  ( (x < 0) ? -(x) : x )
+#define ABS(x)  ( (x < 0) ? -(x) : x )
 using namespace std;
 const int N[] = {16,27,28};
 
